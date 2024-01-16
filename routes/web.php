@@ -106,5 +106,26 @@ Route::post('/tasks', function (Request $request) {
     $task->long_description = $data['long_description'];
     $task->Save();
 
-    return redirect()->route('tasks.show', ['id' => $task->id])->with('success', 'you have successfully add task.');
-})->name('task.store');
+    return redirect()->route('tasks.show', ['id' => $task->id])
+        ->with('success', 'you have successfully add task.');
+})->name('tasks.store');
+
+//edit task on the form started route
+Route::put('/tasks/{id}', function ($id, Request $request) {
+    // dd($request->all());
+    $data = $request->validate(
+        [
+            'title' => 'required | max:255',
+            'description' => 'required',
+            'long_description' => 'required'
+        ]
+    );
+    $task = Task::findOrFail($id);
+    $task->title = $data['title'];
+    $task->description = $data['description'];
+    $task->long_description = $data['long_description'];
+    $task->Save();
+
+    return redirect()->route('tasks.show', ['id' => $task->id])
+        ->with('success', 'you have successfully update task.');
+})->name('tasks.update');

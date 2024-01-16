@@ -6,15 +6,15 @@
     <style>
         .error-message {
             color: red;
-            font: 0.7%;
+            font: 0.7rem;
         }
     </style>
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ route('task.store') }}">
+    <form method="POST" action="{{ route('tasks.update', ['id'=> $task->id]) }}">
         @csrf
-        @method('put')
+        @method('put');
         <div>
             <label for="title">
                 Title
@@ -25,14 +25,14 @@
             @enderror
         </div>
         <div>
-            <label for="description">Desription</label>
+            <label for="description">Description</label>
             <textarea name="description" id="description" rows="5">{{ $task->description }}</textarea>
         </div>
         @error('description')
             <p class="error-message">{{ $message }}</p>
         @enderror
         <div>
-            <label for="long_description">Long Desription</label>
+            <label for="long_description">Long Description</label>
             <textarea name="long_description" id="long_description" rows="10">{{ $task->long_description }}</textarea>
         </div>
         @error('long_description')
