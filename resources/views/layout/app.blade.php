@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>laravel app</title>
     @yield('styles')
+    @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="container mx-auto mt-10 mb-10 max-w-lg accent-red-700">
     <h1>@yield('title')</h1>
     <h5>
         @if (session()->has('session'))
-            <div>{{ session('success') }}</div>
+        <div>{{ session('success') }}</div>
         @endif
     </h5>
     <div>@yield('content')</div>
