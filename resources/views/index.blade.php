@@ -1,18 +1,24 @@
-<h1>This To-do list.</h1>
-<div>
-    <div><a href="{{ route('tasks.create') }}">Add Task</a></div>
-    @forelse ($tasks as $task)
+@extends('layout.app')
+@section('title', 'the list of tasks')
+@section('content')
     <div>
-        <a href="{{ route('tasks.show', ['task' => $task->id]) }} ">
-            {{ $task->title }}
-        </a>
+        <nav class="mb-5">
+            <a href="{{ route('tasks.create') }}" class="font-medium underline decoration-blue-500">Add Task</a>
+        </nav>
+        @forelse ($tasks as $task)
+            <div>
+                <a href="{{ route('tasks.show', ['task' => $task->id]) }}" @class(['line-through' => $task->completed])>
+                    {{ $task->title }}
+                </a>
+            </div>
+        @empty
+            <div>There are no task!</div>
+        @endforelse
+
+        @if ($tasks->count())
+            <nav class="mt-4">
+                {{ $tasks->links() }}
+            </nav>
+        @endif
     </div>
-    @empty
-    <div>There no task.</div>
-    @endforelse
-    @if ($tasks->count())
-    <nav>
-        {{ $tasks->links() }}
-    </nav>
-    @endif
-</div>
+@endsection

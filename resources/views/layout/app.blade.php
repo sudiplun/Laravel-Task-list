@@ -10,13 +10,14 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="container mx-auto mt-10 mb-10 max-w-lg accent-red-700">
-    <h1>@yield('title')</h1>
+<body class="container mx-auto mt-10 mb-10 max-w-lg">
+    <h1 class="2xl mb-3 font-bold text-red-700">@yield('title')</h1>
     <h5>
         @if (session()->has('session'))
-        <div>{{ session('success') }}</div>
+            <div>{{ session('success') }}</div>
         @endif
     </h5>
+
     <div>@yield('content')</div>
 </body>
 
