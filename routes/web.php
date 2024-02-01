@@ -3,7 +3,6 @@
 use App\Models\Task;
 use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return redirect()->route('tasks.index');
